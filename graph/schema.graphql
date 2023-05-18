@@ -1,28 +1,78 @@
-# GraphQL schema example
-#
-# https://gqlgen.com/getting-started/
-
-type Todo {
+type Wallpaper {
   id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
+  title: String!
+  description: String
+  lightWallpaperUrl: String!
+  darkWallpaperUrl: String!
+  author: User!
+  category: Category
+  tags: [String]
+  createdAt: Timestamp!
+  updatedAt: Timestamp
+  downloadCount: Int!
+  viewCount: Int!
+  favoriteCount: Int!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  wallpapers: [Wallpaper]
 }
 
 type User {
   id: ID!
-  name: String!
+  username: String!
+  createdAt: Timestamp!
+  wallpapers: [Wallpaper]
+  favorites: [Wallpaper]
+}
+
+input NewWallpaper {
+  title: String!
+  description: String
+  lightWallpaperUrl: String!
+  darkWallpaperUrl: String!
+  categoryId: ID
+  tags: [String]
+}
+
+input RefreshTokenInput{
+  token: String!
+}
+
+input NewUser {
+  username: String!
+  password: String!
+}
+
+input Login {
+  username: String!
+  password: String!
 }
 
 type Query {
-  todos: [Todo!]!
-}
-
-input NewTodo {
-  text: String!
-  userId: String!
+  wallpapers: [Wallpaper!]!
+#  categories: [Category!]!
+#  users: [User!]!
+#  tags: [String!]!
+#  wallpaper(id: ID!): Wallpaper
+#  category(id: ID!): Category
+#  user(id: ID!): User
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+  createWallpaper(input: NewWallpaper!): Wallpaper!
+  # updateWallpaper(id: ID!, input: NewWallpaper!): Wallpaper!
+  # deleteWallpaper(id: ID!): Boolean!
+  # favoriteWallpaper(id: ID!): Boolean!
+  # unFavoriteWallpaper(id: ID!): Boolean!
+  createCategory(name: String!): Category!
+  # updateCategory(id: ID!, name: String!): Category!
+  # deleteCategory(id: ID!): Boolean!
+  createTag(name: String!): Boolean!
+  # deleteTag(name: String!): Boolean!
+  createUser(input: NewUser!): String!
+  login(input: Login!): String!
+  refreshToken(input: RefreshTokenInput!): String!
 }
