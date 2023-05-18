@@ -1,14 +1,16 @@
+scalar Time
+
 type Wallpaper {
   id: ID!
   title: String!
   description: String
   lightWallpaperUrl: String!
   darkWallpaperUrl: String!
-  author: User!
+ author: User!
   category: Category
   tags: [String]
-  createdAt: Timestamp!
-  updatedAt: Timestamp
+  createdAt: Time!
+  upTimedAt: Time
   downloadCount: Int!
   viewCount: Int!
   favoriteCount: Int!
@@ -23,7 +25,7 @@ type Category {
 type User {
   id: ID!
   username: String!
-  createdAt: Timestamp!
+  createdAt: Time!
   wallpapers: [Wallpaper]
   favorites: [Wallpaper]
 }
@@ -63,12 +65,12 @@ type Query {
 
 type Mutation {
   createWallpaper(input: NewWallpaper!): Wallpaper!
-  # updateWallpaper(id: ID!, input: NewWallpaper!): Wallpaper!
+  # upTimeWallpaper(id: ID!, input: NewWallpaper!): Wallpaper!
   # deleteWallpaper(id: ID!): Boolean!
   # favoriteWallpaper(id: ID!): Boolean!
   # unFavoriteWallpaper(id: ID!): Boolean!
   createCategory(name: String!): Category!
-  # updateCategory(id: ID!, name: String!): Category!
+  # upTimeCategory(id: ID!, name: String!): Category!
   # deleteCategory(id: ID!): Boolean!
   createTag(name: String!): Boolean!
   # deleteTag(name: String!): Boolean!
