@@ -55,12 +55,12 @@ input Login {
 
 type Query {
   wallpapers: [Wallpaper!]!
-  #  categories: [Category!]!
-  #  users: [User!]!
+   categories: [Category!]!
+   users: [User!]!
   #  tags: [String!]!
-  #  wallpaper(id: ID!): Wallpaper
-  #  category(id: ID!): Category
-  #  user(id: ID!): User
+   wallpaper(id: ID!): Wallpaper
+   category(id: ID!): Category
+   user(id: ID!): User
 }
 
 type Mutation {

@@ -46,6 +46,31 @@ func (r *queryResolver) Wallpapers(ctx context.Context) ([]*model.Wallpaper, err
 	panic(fmt.Errorf("not implemented: Wallpapers - wallpapers"))
 }
 
+// Categories is the resolver for the categories field.
+func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, error) {
+	panic(fmt.Errorf("not implemented: Categories - categories"))
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
+	panic(fmt.Errorf("not implemented: Users - users"))
+}
+
+// Wallpaper is the resolver for the wallpaper field.
+func (r *queryResolver) Wallpaper(ctx context.Context, id string) (*model.Wallpaper, error) {
+	panic(fmt.Errorf("not implemented: Wallpaper - wallpaper"))
+}
+
+// Category is the resolver for the category field.
+func (r *queryResolver) Category(ctx context.Context, id string) (*model.Category, error) {
+	panic(fmt.Errorf("not implemented: Category - category"))
+}
+
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: User - user"))
+}
+
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
