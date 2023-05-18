@@ -2,19 +2,59 @@
 
 package model
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+import (
+	"time"
+)
+
+type Category struct {
+	ID         string       `json:"id"`
+	Name       string       `json:"name"`
+	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
 }
 
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
+type Login struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type NewUser struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type NewWallpaper struct {
+	Title             string    `json:"title"`
+	Description       *string   `json:"description,omitempty"`
+	LightWallpaperURL string    `json:"lightWallpaperUrl"`
+	DarkWallpaperURL  string    `json:"darkWallpaperUrl"`
+	CategoryID        *string   `json:"categoryId,omitempty"`
+	Tags              []*string `json:"tags,omitempty"`
+}
+
+type RefreshTokenInput struct {
+	Token string `json:"token"`
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID         string       `json:"id"`
+	Username   string       `json:"username"`
+	CreatedAt  time.Time    `json:"createdAt"`
+	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
+	Favorites  []*Wallpaper `json:"favorites,omitempty"`
+}
+
+type Wallpaper struct {
+	ID                string     `json:"id"`
+	Title             string     `json:"title"`
+	Description       *string    `json:"description,omitempty"`
+	LightWallpaperURL string     `json:"lightWallpaperUrl"`
+	DarkWallpaperURL  string     `json:"darkWallpaperUrl"`
+	Author            *User      `json:"author"`
+	Category          *Category  `json:"category,omitempty"`
+	Tags              []*string  `json:"tags,omitempty"`
+	CreatedAt         time.Time  `json:"createdAt"`
+	UpTimedAt         *time.Time `json:"upTimedAt,omitempty"`
+	DownloadCount     int        `json:"downloadCount"`
+	ViewCount         int        `json:"viewCount"`
+	FavoriteCount     int        `json:"favoriteCount"`
 }

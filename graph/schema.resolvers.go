@@ -11,14 +11,39 @@ import (
 	"github.com/2zqa/duwallpaper-graphql/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateWallpaper is the resolver for the createWallpaper field.
+func (r *mutationResolver) CreateWallpaper(ctx context.Context, input model.NewWallpaper) (*model.Wallpaper, error) {
+	panic(fmt.Errorf("not implemented: CreateWallpaper - createWallpaper"))
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// CreateCategory is the resolver for the createCategory field.
+func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*model.Category, error) {
+	panic(fmt.Errorf("not implemented: CreateCategory - createCategory"))
+}
+
+// CreateTag is the resolver for the createTag field.
+func (r *mutationResolver) CreateTag(ctx context.Context, name string) (bool, error) {
+	panic(fmt.Errorf("not implemented: CreateTag - createTag"))
+}
+
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (string, error) {
+	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+}
+
+// Login is the resolver for the login field.
+func (r *mutationResolver) Login(ctx context.Context, input model.Login) (string, error) {
+	panic(fmt.Errorf("not implemented: Login - login"))
+}
+
+// RefreshToken is the resolver for the refreshToken field.
+func (r *mutationResolver) RefreshToken(ctx context.Context, input model.RefreshTokenInput) (string, error) {
+	panic(fmt.Errorf("not implemented: RefreshToken - refreshToken"))
+}
+
+// Wallpapers is the resolver for the wallpapers field.
+func (r *queryResolver) Wallpapers(ctx context.Context) ([]*model.Wallpaper, error) {
+	panic(fmt.Errorf("not implemented: Wallpapers - wallpapers"))
 }
 
 // Mutation returns MutationResolver implementation.
