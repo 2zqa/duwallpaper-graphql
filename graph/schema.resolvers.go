@@ -18,7 +18,14 @@ func (r *mutationResolver) CreateWallpaper(ctx context.Context, input model.NewW
 
 // CreateCategory is the resolver for the createCategory field.
 func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*model.Category, error) {
-	panic(fmt.Errorf("not implemented: CreateCategory - createCategory"))
+	id := len(r.categories) + 1
+	newCategory := &model.Category{
+		ID:         fmt.Sprintf("%d", id),
+		Name:       name,
+		Wallpapers: make([]*model.Wallpaper, 0),
+	}
+	r.categories = append(r.categories, newCategory)
+	return newCategory, nil
 }
 
 // CreateTag is the resolver for the createTag field.
@@ -48,7 +55,7 @@ func (r *queryResolver) Wallpapers(ctx context.Context) ([]*model.Wallpaper, err
 
 // Categories is the resolver for the categories field.
 func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, error) {
-	panic(fmt.Errorf("not implemented: Categories - categories"))
+	return r.categories, nil
 }
 
 // Users is the resolver for the users field.
@@ -63,7 +70,7 @@ func (r *queryResolver) Wallpaper(ctx context.Context, id string) (*model.Wallpa
 
 // Category is the resolver for the category field.
 func (r *queryResolver) Category(ctx context.Context, id string) (*model.Category, error) {
-	panic(fmt.Errorf("not implemented: Category - category"))
+	return r.getCategory(id)
 }
 
 // User is the resolver for the user field.
