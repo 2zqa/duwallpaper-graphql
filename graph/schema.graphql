@@ -10,7 +10,7 @@ type Wallpaper {
   category: Category
   tags: [String]
   createdAt: Time!
-  upTimedAt: Time
+  UpdatedAt: Time
   downloadCount: Int!
   viewCount: Int!
   favoriteCount: Int!
@@ -65,12 +65,12 @@ type Query {
 
 type Mutation {
   createWallpaper(input: NewWallpaper!): Wallpaper!
-  # upTimeWallpaper(id: ID!, input: NewWallpaper!): Wallpaper!
+  # UpdatedWallpaper(id: ID!, input: NewWallpaper!): Wallpaper!
   # deleteWallpaper(id: ID!): Boolean!
   # favoriteWallpaper(id: ID!): Boolean!
   # unFavoriteWallpaper(id: ID!): Boolean!
   createCategory(name: String!): Category!
-  # upTimeCategory(id: ID!, name: String!): Category!
+  # UpdatedCategory(id: ID!, name: String!): Category!
   # deleteCategory(id: ID!): Boolean!
   createTag(name: String!): Boolean!
   # deleteTag(name: String!): Boolean!

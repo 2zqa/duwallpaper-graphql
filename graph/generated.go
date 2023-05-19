@@ -90,7 +90,7 @@ type ComplexityRoot struct {
 		LightWallpaperURL func(childComplexity int) int
 		Tags              func(childComplexity int) int
 		Title             func(childComplexity int) int
-		UpTimedAt         func(childComplexity int) int
+		UpdatedAt         func(childComplexity int) int
 		ViewCount         func(childComplexity int) int
 	}
 }
@@ -389,12 +389,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Wallpaper.Title(childComplexity), true
 
-	case "Wallpaper.upTimedAt":
-		if e.complexity.Wallpaper.UpTimedAt == nil {
+	case "Wallpaper.UpdatedAt":
+		if e.complexity.Wallpaper.UpdatedAt == nil {
 			break
 		}
 
-		return e.complexity.Wallpaper.UpTimedAt(childComplexity), true
+		return e.complexity.Wallpaper.UpdatedAt(childComplexity), true
 
 	case "Wallpaper.viewCount":
 		if e.complexity.Wallpaper.ViewCount == nil {
@@ -824,8 +824,8 @@ func (ec *executionContext) fieldContext_Category_wallpapers(ctx context.Context
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -896,8 +896,8 @@ func (ec *executionContext) fieldContext_Mutation_createWallpaper(ctx context.Co
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -1262,8 +1262,8 @@ func (ec *executionContext) fieldContext_Query_wallpapers(ctx context.Context, f
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -1439,8 +1439,8 @@ func (ec *executionContext) fieldContext_Query_wallpaper(ctx context.Context, fi
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -1904,8 +1904,8 @@ func (ec *executionContext) fieldContext_User_wallpapers(ctx context.Context, fi
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -1973,8 +1973,8 @@ func (ec *executionContext) fieldContext_User_favorites(ctx context.Context, fie
 				return ec.fieldContext_Wallpaper_tags(ctx, field)
 			case "createdAt":
 				return ec.fieldContext_Wallpaper_createdAt(ctx, field)
-			case "upTimedAt":
-				return ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+			case "UpdatedAt":
+				return ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 			case "downloadCount":
 				return ec.fieldContext_Wallpaper_downloadCount(ctx, field)
 			case "viewCount":
@@ -2395,8 +2395,8 @@ func (ec *executionContext) fieldContext_Wallpaper_createdAt(ctx context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _Wallpaper_upTimedAt(ctx context.Context, field graphql.CollectedField, obj *model.Wallpaper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Wallpaper_upTimedAt(ctx, field)
+func (ec *executionContext) _Wallpaper_UpdatedAt(ctx context.Context, field graphql.CollectedField, obj *model.Wallpaper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Wallpaper_UpdatedAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -2409,7 +2409,7 @@ func (ec *executionContext) _Wallpaper_upTimedAt(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.UpTimedAt, nil
+		return obj.UpdatedAt, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2423,7 +2423,7 @@ func (ec *executionContext) _Wallpaper_upTimedAt(ctx context.Context, field grap
 	return ec.marshalOTime2ᚖtimeᚐTime(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Wallpaper_upTimedAt(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Wallpaper_UpdatedAt(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Wallpaper",
 		Field:      field,
@@ -4936,9 +4936,9 @@ func (ec *executionContext) _Wallpaper(ctx context.Context, sel ast.SelectionSet
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "upTimedAt":
+		case "UpdatedAt":
 
-			out.Values[i] = ec._Wallpaper_upTimedAt(ctx, field, obj)
+			out.Values[i] = ec._Wallpaper_UpdatedAt(ctx, field, obj)
 
 		case "downloadCount":
 

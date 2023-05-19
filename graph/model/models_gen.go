@@ -53,7 +53,7 @@ type Wallpaper struct {
 	Category          *Category  `json:"category,omitempty"`
 	Tags              []*string  `json:"tags,omitempty"`
 	CreatedAt         time.Time  `json:"createdAt"`
-	UpTimedAt         *time.Time `json:"upTimedAt,omitempty"`
+	UpdatedAt         *time.Time `json:"UpdatedAt,omitempty"`
 	DownloadCount     int        `json:"downloadCount"`
 	ViewCount         int        `json:"viewCount"`
 	FavoriteCount     int        `json:"favoriteCount"`
