@@ -7,13 +7,43 @@ package graph
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/2zqa/duwallpaper-graphql/graph/model"
 )
 
 // CreateWallpaper is the resolver for the createWallpaper field.
 func (r *mutationResolver) CreateWallpaper(ctx context.Context, input model.NewWallpaper) (*model.Wallpaper, error) {
-	panic(fmt.Errorf("not implemented: CreateWallpaper - createWallpaper"))
+	id := len(r.wallpapers) + 1
+	tempUser := &model.User{
+		ID:       "1",
+		Username: "test",
+	}
+	var category *model.Category
+	if input.CategoryID != nil {
+		retrieved, err := r.getCategory(*input.CategoryID)
+		if err != nil {
+			category = retrieved
+		}
+	}
+
+	now := time.Now()
+
+	newWallpaper := &model.Wallpaper{
+		ID:                fmt.Sprintf("%d", id),
+		Title:             input.Title,
+		Description:       input.Description,
+		LightWallpaperURL: input.LightWallpaperURL,
+		DarkWallpaperURL:  input.DarkWallpaperURL,
+		Author:            tempUser,
+		Category:          category,
+		CreatedAt:         now,
+		UpdatedAt:         &now,
+	}
+
+	tempUser.Wallpapers = append(tempUser.Wallpapers, newWallpaper)
+	r.wallpapers = append(r.wallpapers, newWallpaper)
+	return newWallpaper, nil
 }
 
 // CreateCategory is the resolver for the createCategory field.
@@ -50,7 +80,7 @@ func (r *mutationResolver) RefreshToken(ctx context.Context, input model.Refresh
 
 // Wallpapers is the resolver for the wallpapers field.
 func (r *queryResolver) Wallpapers(ctx context.Context) ([]*model.Wallpaper, error) {
-	panic(fmt.Errorf("not implemented: Wallpapers - wallpapers"))
+	return r.wallpapers, nil
 }
 
 // Categories is the resolver for the categories field.
@@ -65,7 +95,7 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 
 // Wallpaper is the resolver for the wallpaper field.
 func (r *queryResolver) Wallpaper(ctx context.Context, id string) (*model.Wallpaper, error) {
-	panic(fmt.Errorf("not implemented: Wallpaper - wallpaper"))
+	return r.getWallpaper(id)
 }
 
 // Category is the resolver for the category field.
