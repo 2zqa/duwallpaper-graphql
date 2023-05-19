@@ -46,6 +46,11 @@ func (r *mutationResolver) CreateWallpaper(ctx context.Context, input model.NewW
 	return newWallpaper, nil
 }
 
+// DeleteWallpaper is the resolver for the deleteWallpaper field.
+func (r *mutationResolver) DeleteWallpaper(ctx context.Context, id string) (bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteWallpaper - deleteWallpaper"))
+}
+
 // CreateCategory is the resolver for the createCategory field.
 func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*model.Category, error) {
 	id := len(r.categories) + 1
@@ -61,6 +66,11 @@ func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*mo
 // CreateTag is the resolver for the createTag field.
 func (r *mutationResolver) CreateTag(ctx context.Context, name string) (*model.Tag, error) {
 	panic(fmt.Errorf("not implemented: CreateTag - createTag"))
+}
+
+// DeleteTag is the resolver for the deleteTag field.
+func (r *mutationResolver) DeleteTag(ctx context.Context, id string) (bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteTag - deleteTag"))
 }
 
 // CreateUser is the resolver for the createUser field.
