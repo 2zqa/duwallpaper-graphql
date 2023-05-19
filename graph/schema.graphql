@@ -8,7 +8,7 @@ type Wallpaper {
   darkWallpaperUrl: String!
   author: User!
   category: Category
-  tags: [Tag!]
+  tags: [Tag!]!
   createdAt: Time!
   UpdatedAt: Time
   downloadCount: Int!
@@ -19,21 +19,21 @@ type Wallpaper {
 type Category {
   id: ID!
   name: String!
-  wallpapers: [Wallpaper]
+  wallpapers: [Wallpaper!]!
 }
 
 type Tag {
   id: ID!
   name: String!
-  wallpapers: [Wallpaper]
+  wallpapers: [Wallpaper!]!
 }
 
 type User {
   id: ID!
   username: String!
   createdAt: Time!
-  wallpapers: [Wallpaper]
-  favorites: [Wallpaper]
+  wallpapers: [Wallpaper!]!
+  favorites: [Wallpaper!]!
 }
 
 input NewWallpaper {
@@ -42,7 +42,7 @@ input NewWallpaper {
   lightWallpaperUrl: String!
   darkWallpaperUrl: String!
   categoryId: ID
-  tags: [String]
+  tagsIds: [ID!]
 }
 
 input RefreshTokenInput {
@@ -61,12 +61,12 @@ input Login {
 
 type Query {
   wallpapers: [Wallpaper!]!
-   categories: [Category!]!
-   users: [User!]!
-   tags: [Tag!]!
-   wallpaper(id: ID!): Wallpaper
-   category(id: ID!): Category
-   user(id: ID!): User
+  categories: [Category!]!
+  users: [User!]!
+  tags: [Tag!]!
+  wallpaper(id: ID!): Wallpaper
+  category(id: ID!): Category
+  user(id: ID!): User
 }
 
 type Mutation {

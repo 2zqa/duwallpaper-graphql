@@ -827,11 +827,14 @@ func (ec *executionContext) _Category_wallpapers(ctx context.Context, field grap
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Wallpaper)
 	fc.Result = res
-	return ec.marshalOWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx, field.Selections, res)
+	return ec.marshalNWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaperᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Category_wallpapers(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1923,11 +1926,14 @@ func (ec *executionContext) _Tag_wallpapers(ctx context.Context, field graphql.C
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Wallpaper)
 	fc.Result = res
-	return ec.marshalOWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx, field.Selections, res)
+	return ec.marshalNWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaperᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Tag_wallpapers(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2124,11 +2130,14 @@ func (ec *executionContext) _User_wallpapers(ctx context.Context, field graphql.
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Wallpaper)
 	fc.Result = res
-	return ec.marshalOWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx, field.Selections, res)
+	return ec.marshalNWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaperᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_User_wallpapers(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2193,11 +2202,14 @@ func (ec *executionContext) _User_favorites(ctx context.Context, field graphql.C
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Wallpaper)
 	fc.Result = res
-	return ec.marshalOWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx, field.Selections, res)
+	return ec.marshalNWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaperᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_User_favorites(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2584,11 +2596,14 @@ func (ec *executionContext) _Wallpaper_tags(ctx context.Context, field graphql.C
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Tag)
 	fc.Result = res
-	return ec.marshalOTag2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐTagᚄ(ctx, field.Selections, res)
+	return ec.marshalNTag2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐTagᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Wallpaper_tags(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4685,7 +4700,7 @@ func (ec *executionContext) unmarshalInputNewWallpaper(ctx context.Context, obj 
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"title", "description", "lightWallpaperUrl", "darkWallpaperUrl", "categoryId", "tags"}
+	fieldsInOrder := [...]string{"title", "description", "lightWallpaperUrl", "darkWallpaperUrl", "categoryId", "tagsIds"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -4737,15 +4752,15 @@ func (ec *executionContext) unmarshalInputNewWallpaper(ctx context.Context, obj 
 				return it, err
 			}
 			it.CategoryID = data
-		case "tags":
+		case "tagsIds":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tags"))
-			data, err := ec.unmarshalOString2ᚕᚖstring(ctx, v)
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tagsIds"))
+			data, err := ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
-			it.Tags = data
+			it.TagsIds = data
 		}
 	}
 
@@ -4817,6 +4832,9 @@ func (ec *executionContext) _Category(ctx context.Context, sel ast.SelectionSet,
 
 			out.Values[i] = ec._Category_wallpapers(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5134,6 +5152,9 @@ func (ec *executionContext) _Tag(ctx context.Context, sel ast.SelectionSet, obj 
 
 			out.Values[i] = ec._Tag_wallpapers(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5180,10 +5201,16 @@ func (ec *executionContext) _User(ctx context.Context, sel ast.SelectionSet, obj
 
 			out.Values[i] = ec._User_wallpapers(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "favorites":
 
 			out.Values[i] = ec._User_favorites(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5252,6 +5279,9 @@ func (ec *executionContext) _Wallpaper(ctx context.Context, sel ast.SelectionSet
 
 			out.Values[i] = ec._Wallpaper_tags(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "createdAt":
 
 			out.Values[i] = ec._Wallpaper_createdAt(ctx, field, obj)
@@ -6222,6 +6252,44 @@ func (ec *executionContext) marshalOCategory2ᚖgithubᚗcomᚋ2zqaᚋduwallpape
 	return ec._Category(ctx, sel, v)
 }
 
+func (ec *executionContext) unmarshalOID2ᚕstringᚄ(ctx context.Context, v interface{}) ([]string, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var vSlice []interface{}
+	if v != nil {
+		vSlice = graphql.CoerceList(v)
+	}
+	var err error
+	res := make([]string, len(vSlice))
+	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
+		res[i], err = ec.unmarshalNID2string(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) marshalOID2ᚕstringᚄ(ctx context.Context, sel ast.SelectionSet, v []string) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	for i := range v {
+		ret[i] = ec.marshalNID2string(ctx, sel, v[i])
+	}
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
 func (ec *executionContext) unmarshalOID2ᚖstring(ctx context.Context, v interface{}) (*string, error) {
 	if v == nil {
 		return nil, nil
@@ -6238,38 +6306,6 @@ func (ec *executionContext) marshalOID2ᚖstring(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) unmarshalOString2ᚕᚖstring(ctx context.Context, v interface{}) ([]*string, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var vSlice []interface{}
-	if v != nil {
-		vSlice = graphql.CoerceList(v)
-	}
-	var err error
-	res := make([]*string, len(vSlice))
-	for i := range vSlice {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalOString2ᚖstring(ctx, vSlice[i])
-		if err != nil {
-			return nil, err
-		}
-	}
-	return res, nil
-}
-
-func (ec *executionContext) marshalOString2ᚕᚖstring(ctx context.Context, sel ast.SelectionSet, v []*string) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	for i := range v {
-		ret[i] = ec.marshalOString2ᚖstring(ctx, sel, v[i])
-	}
-
-	return ret
-}
-
 func (ec *executionContext) unmarshalOString2ᚖstring(ctx context.Context, v interface{}) (*string, error) {
 	if v == nil {
 		return nil, nil
@@ -6284,53 +6320,6 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	}
 	res := graphql.MarshalString(*v)
 	return res
-}
-
-func (ec *executionContext) marshalOTag2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐTagᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Tag) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalNTag2ᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐTag(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	for _, e := range ret {
-		if e == graphql.Null {
-			return graphql.Null
-		}
-	}
-
-	return ret
 }
 
 func (ec *executionContext) unmarshalOTime2ᚖtimeᚐTime(ctx context.Context, v interface{}) (*time.Time, error) {
@@ -6354,47 +6343,6 @@ func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑ
 		return graphql.Null
 	}
 	return ec._User(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOWallpaper2ᚕᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx context.Context, sel ast.SelectionSet, v []*model.Wallpaper) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOWallpaper2ᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
 }
 
 func (ec *executionContext) marshalOWallpaper2ᚖgithubᚗcomᚋ2zqaᚋduwallpaperᚑgraphqlᚋgraphᚋmodelᚐWallpaper(ctx context.Context, sel ast.SelectionSet, v *model.Wallpaper) graphql.Marshaler {

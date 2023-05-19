@@ -9,7 +9,7 @@ import (
 type Category struct {
 	ID         string       `json:"id"`
 	Name       string       `json:"name"`
-	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
+	Wallpapers []*Wallpaper `json:"wallpapers"`
 }
 
 type Login struct {
@@ -23,12 +23,12 @@ type NewUser struct {
 }
 
 type NewWallpaper struct {
-	Title             string    `json:"title"`
-	Description       *string   `json:"description,omitempty"`
-	LightWallpaperURL string    `json:"lightWallpaperUrl"`
-	DarkWallpaperURL  string    `json:"darkWallpaperUrl"`
-	CategoryID        *string   `json:"categoryId,omitempty"`
-	Tags              []*string `json:"tags,omitempty"`
+	Title             string   `json:"title"`
+	Description       *string  `json:"description,omitempty"`
+	LightWallpaperURL string   `json:"lightWallpaperUrl"`
+	DarkWallpaperURL  string   `json:"darkWallpaperUrl"`
+	CategoryID        *string  `json:"categoryId,omitempty"`
+	TagsIds           []string `json:"tagsIds,omitempty"`
 }
 
 type RefreshTokenInput struct {
@@ -38,15 +38,15 @@ type RefreshTokenInput struct {
 type Tag struct {
 	ID         string       `json:"id"`
 	Name       string       `json:"name"`
-	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
+	Wallpapers []*Wallpaper `json:"wallpapers"`
 }
 
 type User struct {
 	ID         string       `json:"id"`
 	Username   string       `json:"username"`
 	CreatedAt  time.Time    `json:"createdAt"`
-	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
-	Favorites  []*Wallpaper `json:"favorites,omitempty"`
+	Wallpapers []*Wallpaper `json:"wallpapers"`
+	Favorites  []*Wallpaper `json:"favorites"`
 }
 
 type Wallpaper struct {
@@ -57,7 +57,7 @@ type Wallpaper struct {
 	DarkWallpaperURL  string     `json:"darkWallpaperUrl"`
 	Author            *User      `json:"author"`
 	Category          *Category  `json:"category,omitempty"`
-	Tags              []*Tag     `json:"tags,omitempty"`
+	Tags              []*Tag     `json:"tags"`
 	CreatedAt         time.Time  `json:"createdAt"`
 	UpdatedAt         *time.Time `json:"UpdatedAt,omitempty"`
 	DownloadCount     int        `json:"downloadCount"`
