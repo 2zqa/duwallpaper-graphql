@@ -59,7 +59,7 @@ func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*mo
 }
 
 // CreateTag is the resolver for the createTag field.
-func (r *mutationResolver) CreateTag(ctx context.Context, name string) (bool, error) {
+func (r *mutationResolver) CreateTag(ctx context.Context, name string) (*model.Tag, error) {
 	panic(fmt.Errorf("not implemented: CreateTag - createTag"))
 }
 
@@ -91,6 +91,11 @@ func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, erro
 // Users is the resolver for the users field.
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	panic(fmt.Errorf("not implemented: Users - users"))
+}
+
+// Tags is the resolver for the tags field.
+func (r *queryResolver) Tags(ctx context.Context) ([]*model.Tag, error) {
+	panic(fmt.Errorf("not implemented: Tags - tags"))
 }
 
 // Wallpaper is the resolver for the wallpaper field.

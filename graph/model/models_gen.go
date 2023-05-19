@@ -35,6 +35,12 @@ type RefreshTokenInput struct {
 	Token string `json:"token"`
 }
 
+type Tag struct {
+	ID         string       `json:"id"`
+	Name       string       `json:"name"`
+	Wallpapers []*Wallpaper `json:"wallpapers,omitempty"`
+}
+
 type User struct {
 	ID         string       `json:"id"`
 	Username   string       `json:"username"`
@@ -51,7 +57,7 @@ type Wallpaper struct {
 	DarkWallpaperURL  string     `json:"darkWallpaperUrl"`
 	Author            *User      `json:"author"`
 	Category          *Category  `json:"category,omitempty"`
-	Tags              []*string  `json:"tags,omitempty"`
+	Tags              []*Tag     `json:"tags,omitempty"`
 	CreatedAt         time.Time  `json:"createdAt"`
 	UpdatedAt         *time.Time `json:"UpdatedAt,omitempty"`
 	DownloadCount     int        `json:"downloadCount"`
