@@ -67,6 +67,7 @@ type Query {
   wallpaper(id: ID!): Wallpaper
   category(id: ID!): Category
   user(id: ID!): User
+  tag(id: ID!): Tag
 }
 
 type Mutation {

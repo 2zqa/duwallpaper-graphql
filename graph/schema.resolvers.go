@@ -123,6 +123,11 @@ func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error
 	panic(fmt.Errorf("not implemented: User - user"))
 }
 
+// Tag is the resolver for the tag field.
+func (r *queryResolver) Tag(ctx context.Context, id string) (*model.Tag, error) {
+	panic(fmt.Errorf("not implemented: Tag - tag"))
+}
+
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
