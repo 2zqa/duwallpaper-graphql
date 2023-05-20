@@ -65,12 +65,19 @@ func (r *mutationResolver) CreateCategory(ctx context.Context, name string) (*mo
 
 // CreateTag is the resolver for the createTag field.
 func (r *mutationResolver) CreateTag(ctx context.Context, name string) (*model.Tag, error) {
-	panic(fmt.Errorf("not implemented: CreateTag - createTag"))
+	id := len(r.tags) + 1
+	newTag := &model.Tag{
+		ID:         fmt.Sprintf("%d", id),
+		Name:       name,
+		Wallpapers: make([]*model.Wallpaper, 0),
+	}
+	r.tags = append(r.tags, newTag)
+	return newTag, nil
 }
 
 // DeleteTag is the resolver for the deleteTag field.
 func (r *mutationResolver) DeleteTag(ctx context.Context, id string) (bool, error) {
-	panic(fmt.Errorf("not implemented: DeleteTag - deleteTag"))
+	return r.deleteTag(id)
 }
 
 // CreateUser is the resolver for the createUser field.
@@ -105,7 +112,7 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 
 // Tags is the resolver for the tags field.
 func (r *queryResolver) Tags(ctx context.Context) ([]*model.Tag, error) {
-	panic(fmt.Errorf("not implemented: Tags - tags"))
+	return r.tags, nil
 }
 
 // Wallpaper is the resolver for the wallpaper field.
@@ -125,7 +132,7 @@ func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error
 
 // Tag is the resolver for the tag field.
 func (r *queryResolver) Tag(ctx context.Context, id string) (*model.Tag, error) {
-	panic(fmt.Errorf("not implemented: Tag - tag"))
+	return r.getTag(id)
 }
 
 // Mutation returns MutationResolver implementation.
